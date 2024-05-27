@@ -46,6 +46,19 @@ class Author:
         self._articles = []
         self._magazines = set()
 
+    def get_name(self):
+        return self._name
+     
+    def set_name(self, name):
+        if hasattr(self, '_name'):
+            print("Cannot change the name after the author is instantiated.")
+        elif isinstance(name, str) and len(name) > 0:
+            self._name = name
+        else:
+            print("Name must be a non-empty string.")
+
+    name = property(get_name, set_name)   
+
     def articles(self):
          self._articles=[]
          return [article for article in Magazine.all_articles() if article.author == self]
